@@ -20,7 +20,7 @@
       <div class="card-block">
         
         <div class="input-group">
-          <input type="text" ng-model="vm.task.taskName" class="form-control" placeholder="Digite a tarefa...">
+          <input type="text" ng-model="vm.task.taskName" ng-keyup="$event.keyCode == 13 && vm.addTask()" class="form-control" placeholder="Digite a tarefa...">
           <span class="input-group-btn">
             <button class="btn btn-primary" type="button" ng-click="vm.addTask()">Add!</button>
           </span>
@@ -36,11 +36,11 @@
             <tr ng-repeat="task in vm.tasks">
               <td>
                 <span ng-hide="vm.editing === task._id">{{task.taskName}}</span>
-                <input ng-show="vm.editing === task._id" type="text" class="form-control" ng-model="vm.taskToUpdate.taskName">
+                <input ng-show="vm.editing === task._id" type="text" class="form-control" ng-model="vm.taskToUpdate.taskName" ng-keyup="$event.keyCode == 13 && vm.update()">
                 <div class="float-lg-right">
                   <button ng-hide="vm.editing === task._id" ng-click="vm.edit(task._id)" class="btn btn-primary btn-sm">Editar</button>
                   <button ng-hide="vm.editing === task._id" class="btn btn-danger btn-sm" ng-click="vm.remove(task._id)">Deletar</button>
-                  <button ng-show="vm.editing === task._id" ng-click="vm.editing = false" class="btn btn-default btn-sm">Cancelar</button>                
+                  <button ng-show="vm.editing === task._id" ng-click="vm.cancelEdit()" class="btn btn-default btn-sm">Cancelar</button>                
                   <button ng-show="vm.editing === task._id" ng-click="vm.update()" class="btn btn-success btn-sm">Atualizar</button>
                 </div>
               </td>

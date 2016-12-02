@@ -44,6 +44,10 @@
       });
     };  
 
+    self.cancelEdit = function () {
+      refresh();
+    };
+
     self.update = function(task) {
       console.log(self.task._id);
       $http.put('/tasks/' + self.taskToUpdate._id, self.taskToUpdate).success(function(response) {
